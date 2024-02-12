@@ -11,12 +11,13 @@
 
     <button mat-flat-button color="primary" class="button_add">
       <mat-icon>add</mat-icon>
-      Añadir superheroe
+      Añadir superhéroe
     </button>
   </div>
 
   <div class="superheroes_list">
-    @for (superhero of superheroes; track $index) {
+    @for (superhero of superheroes.slice(pageIndex * pageSize, (pageIndex + 1) *
+    pageSize); track $index) {
     <mat-card>
       <mat-card-content class="superhero">
         <img
@@ -45,6 +46,17 @@
     </mat-card>
     }
   </div>
+  <mat-paginator
+    #paginator
+    showFirstLastButtons
+    [length]="superheroes.length"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSize]="8"
+    [hidePageSize]="true"
+    aria-label="Select page"
+    (page)="handlePageEvent($event)"
+  ></mat-paginator>
 </section>
 
 <mat-toolbar color="primary">

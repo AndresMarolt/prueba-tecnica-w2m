@@ -79,17 +79,6 @@ export class SuperheroService {
     },
     {
       id: 6,
-      name: 'Hal Jordan',
-      alias: 'Green Lantern',
-      age: 32,
-      height: 185,
-      weight: 90,
-      superpowers: ['Anillo de poder', 'Constructos de energía'],
-      image:
-        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1ebd221d-3581-4775-8f4c-086c377bc4c3/dfu4url-86f87a76-56f4-4c4d-a4bd-115df2048556.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzFlYmQyMjFkLTM1ODEtNDc3NS04ZjRjLTA4NmMzNzdiYzRjM1wvZGZ1NHVybC04NmY4N2E3Ni01NmY0LTRjNGQtYTRiZC0xMTVkZjIwNDg1NTYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.qlO8VyMM0NjtWQyjUXHWJRFY9kI9pYDBFNYwZCmdkB4',
-    },
-    {
-      id: 7,
       name: 'Peter Parker',
       alias: 'Spider-Man',
       age: 26,
@@ -100,7 +89,7 @@ export class SuperheroService {
         'https://pngbuy.com/wp-content/uploads/2023/05/HD-Spiderman-PNG.png',
     },
     {
-      id: 8,
+      id: 7,
       name: 'Bruce Banner',
       alias: 'Hulk',
       age: 45,
@@ -110,29 +99,7 @@ export class SuperheroService {
       image: 'https://i.ebayimg.com/images/g/DCcAAOSwuAVcfDyd/s-l1200.webp',
     },
     {
-      id: 9,
-      name: 'Steve Rogers',
-      alias: 'Captain America',
-      age: 100,
-      height: 188,
-      weight: 108,
-      superpowers: ['Fuerza sobrehumana', 'Agilidad', 'Escudo indestructible'],
-      image:
-        'https://i.pinimg.com/originals/d6/e8/02/d6e80243a42662aff77d1d6604b1ae81.png',
-    },
-    {
-      id: 10,
-      name: 'Jean Grey',
-      alias: 'Phoenix',
-      age: 33,
-      height: 170,
-      weight: 52,
-      superpowers: ['Telepatía', 'Telequinesis', 'Manipulación de energía'],
-      image:
-        'https://i.pinimg.com/originals/b9/04/24/b904248543fdc6c607faadd422bf7049.png',
-    },
-    {
-      id: 11,
+      id: 8,
       name: 'Scott Summers',
       alias: 'Cyclops',
       age: 35,
@@ -143,7 +110,7 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/8b/8c/d7/8b8cd7b5b5081c9ee9ece63881248306.png',
     },
     {
-      id: 12,
+      id: 9,
       name: 'Tony Stark',
       alias: 'Iron Man',
       age: 45,
@@ -153,17 +120,7 @@ export class SuperheroService {
       image: 'https://pngimg.com/d/ironman_PNG36.png',
     },
     {
-      id: 13,
-      name: 'Thor Odinson',
-      alias: 'Thor',
-      age: 1500,
-      height: 198,
-      weight: 225,
-      superpowers: ['Control del trueno', 'Fuerza sobrehumana', 'Vuelo'],
-      image: 'https://eltallerdehector.com/wp-content/uploads/2022/10/Thor.png',
-    },
-    {
-      id: 14,
+      id: 10,
       name: 'Natalia Romanova',
       alias: 'Black Widow',
       age: 35,
@@ -174,7 +131,7 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/95/95/c2/9595c24319c3e1cf65082f4aaf56c47d.png',
     },
     {
-      id: 15,
+      id: 11,
       name: 'Wade Wilson',
       alias: 'Deadpool',
       age: 35,
@@ -185,7 +142,7 @@ export class SuperheroService {
         'https://cdn.inspireuplift.com/uploads/images/seller_products/30032/1702106659_1.png',
     },
     {
-      id: 16,
+      id: 12,
       name: 'Matt Murdock',
       alias: 'Daredevil',
       age: 36,
@@ -196,7 +153,7 @@ export class SuperheroService {
         'https://www.pinclipart.com/picdir/big/539-5392330_daredevil-png-clipart.png',
     },
     {
-      id: 17,
+      id: 13,
       name: 'Carol Danvers',
       alias: 'Captain Marvel',
       age: 30,
@@ -207,7 +164,7 @@ export class SuperheroService {
         'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c92b1cb3-0580-489f-8a32-ff0a3571b156/df63gx2-5e42e71f-076b-4c27-be81-5965a1ffb6e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M5MmIxY2IzLTA1ODAtNDg5Zi04YTMyLWZmMGEzNTcxYjE1NlwvZGY2M2d4Mi01ZTQyZTcxZi0wNzZiLTRjMjctYmU4MS01OTY1YTFmZmI2ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R2na7Xopc8EoaM997vIt0jnNaDuAIuxI9lhE0YgXFck',
     },
     {
-      id: 18,
+      id: 14,
       name: 'Wolverine',
       alias: 'Logan',
       age: 137,
@@ -221,7 +178,7 @@ export class SuperheroService {
       image: 'https://pngfre.com/wp-content/uploads/Wolverine-23-663x1024.png',
     },
     {
-      id: 19,
+      id: 15,
       name: 'Antorcha Humana',
       alias: 'Johnny Storm',
       age: 29,
@@ -232,7 +189,7 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/55/df/48/55df481ca58ac620f679c9794f0caf59.png',
     },
     {
-      id: 20,
+      id: 16,
       name: 'Tormenta',
       alias: 'Ororo Munroe',
       age: 34,

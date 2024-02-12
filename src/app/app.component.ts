@@ -8,6 +8,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
+import { getDutchPaginatorIntl } from './customPaginatorConfiguration';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +25,9 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
+    MatPaginatorModule,
   ],
+  providers: [{ provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl() }],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -27,6 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public superheroes: Superhero[] = [];
   private superheroService = inject(SuperheroService);
   private subscriptions: Subscription[] = [];
+  public pageSize = 8;
+  public pageIndex = 0;
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -34,6 +44,11 @@ export class AppComponent implements OnInit, OnDestroy {
         this.superheroes = heroes;
       })
     );
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
   }
 
   ngOnDestroy(): void {}
