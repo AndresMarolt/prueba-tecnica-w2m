@@ -1,11 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Superhero } from './models/superhero.interface';
+import { SuperheroService } from './services/superhero.service';
+import { Subscription } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent implements OnInit, OnDestroy {
+  public superheroes: Superhero[] = [];
+  private superheroService = inject(SuperheroService);
+  private subscriptions: Subscription[] = [];
+
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.superheroService.getAllSuperheroes().subscribe((heroes) => {
+        this.superheroes = heroes;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {}
+}

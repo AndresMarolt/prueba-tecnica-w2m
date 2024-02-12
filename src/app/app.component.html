@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+  <span class="content">Prueba técnica</span>
+</mat-toolbar>
+
+<section class="content">
+  <div class="superheroes_operations">
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input type="text" matInput color="accent" />
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" class="button_add">
+      <mat-icon>add</mat-icon>
+      Añadir superheroe
+    </button>
+  </div>
+
+  <div class="superheroes_list">
+    @for (superhero of superheroes; track $index) {
+    <mat-card>
+      <mat-card-content class="superhero">
+        <img
+          [src]="superhero.image"
+          [alt]="superhero.name"
+          class="superhero_img"
+        />
+        <div class="superhero_buttons">
+          <button mat-flat-button class="edit_button" color="accent">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-flat-button class="delete_button" color="accent">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div class="superhero_text">
+          <strong>{{ superhero.alias }}</strong>
+          <p>Nombre: {{ superhero.name }}</p>
+          <p>Poderes: {{ superhero.superpowers }}</p>
+          <p>Edad: {{ superhero.age }} años</p>
+          <p>Altura: {{ superhero.height }}cm.</p>
+          <p>Peso: {{ superhero.weight }} kilos</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+</section>
+
+<mat-toolbar color="primary">
+  <span>Prueba técnica</span>
+</mat-toolbar>

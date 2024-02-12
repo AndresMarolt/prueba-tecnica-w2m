@@ -6,5 +6,5 @@ export interface Superhero {
   height: number;
   weight: number;
   superpowers: string[];
-  image?: string[];
+  image?: string;
 }
