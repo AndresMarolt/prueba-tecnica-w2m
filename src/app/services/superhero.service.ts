@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Superhero } from '../models/superhero.interface';
 import { Observable, Subject, of, tap } from 'rxjs';
-import { log } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +8,9 @@ import { log } from 'console';
 export class SuperheroService {
   public SUPERHEROES: Superhero[] = [
     {
-      id: 1,
+      _id: '6168e3cf75c1dc09b86f8d01',
       name: 'Clark Kent',
-      alias: 'Superman',
+      alias: 'SUPERMAN',
       age: 35,
       height: 188,
       weight: 101,
@@ -26,9 +24,9 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/84/3d/3c/843d3cc2bea7c8df224e878e8b6326dd.png',
     },
     {
-      id: 2,
+      _id: '6168e3cf75c1dc09b86f8d02',
       name: 'Bruce Wayne',
-      alias: 'Batman',
+      alias: 'BATMAN',
       age: 42,
       height: 188,
       weight: 95,
@@ -41,9 +39,9 @@ export class SuperheroService {
         'https://clipart.info/images/ccovers/1495749351batman-dc-comics-png-transparent.png',
     },
     {
-      id: 3,
+      _id: '6168e3cf75c1dc09b86f8d03',
       name: 'Diana Prince',
-      alias: 'Wonder Woman',
+      alias: 'WONDER WOMAN',
       age: 3000,
       height: 183,
       weight: 74,
@@ -52,9 +50,9 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/df/73/84/df73842fb7d8533e8477de38978417cc.png',
     },
     {
-      id: 4,
+      _id: '6168e3cf75c1dc09b86f8d04',
       name: 'Barry Allen',
-      alias: 'The Flash',
+      alias: 'THE FLASH',
       age: 30,
       height: 180,
       weight: 81,
@@ -63,9 +61,9 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/6d/cc/83/6dcc83f4af1ab190fdbb621792b7e166.png',
     },
     {
-      id: 5,
+      _id: '6168e3cf75c1dc09b86f8d05',
       name: 'Arthur Curry',
-      alias: 'Aquaman',
+      alias: 'AQUAMAN',
       age: 39,
       height: 185,
       weight: 101,
@@ -78,9 +76,9 @@ export class SuperheroService {
         'https://freepngimg.com/thumb/aquaman/37704-1-aquaman-transparent-image.png',
     },
     {
-      id: 6,
+      _id: '6168e3cf75c1dc09b86f8d06',
       name: 'Peter Parker',
-      alias: 'Spider-Man',
+      alias: 'SPIDER-MAN',
       age: 26,
       height: 178,
       weight: 76,
@@ -89,9 +87,9 @@ export class SuperheroService {
         'https://pngbuy.com/wp-content/uploads/2023/05/HD-Spiderman-PNG.png',
     },
     {
-      id: 7,
+      _id: '6168e3cf75c1dc09b86f8d07',
       name: 'Bruce Banner',
-      alias: 'Hulk',
+      alias: 'HULK',
       age: 45,
       height: 244,
       weight: 635,
@@ -99,9 +97,9 @@ export class SuperheroService {
       image: 'https://i.ebayimg.com/images/g/DCcAAOSwuAVcfDyd/s-l1200.webp',
     },
     {
-      id: 8,
-      name: 'Scott Summers',
-      alias: 'Cyclops',
+      _id: '6168e3cf75c1dc09b86f8d08',
+      name: 'SCOTT SUMMERS',
+      alias: 'CÍCLOPE',
       age: 35,
       height: 191,
       weight: 88,
@@ -110,9 +108,9 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/8b/8c/d7/8b8cd7b5b5081c9ee9ece63881248306.png',
     },
     {
-      id: 9,
+      _id: '6168e3cf75c1dc09b86f8d09',
       name: 'Tony Stark',
-      alias: 'Iron Man',
+      alias: 'IRON MAN',
       age: 45,
       height: 185,
       weight: 102,
@@ -120,9 +118,9 @@ export class SuperheroService {
       image: 'https://pngimg.com/d/ironman_PNG36.png',
     },
     {
-      id: 10,
+      _id: '6168e3cf75c1dc09b86f8d0a',
       name: 'Natalia Romanova',
-      alias: 'Black Widow',
+      alias: 'BLACK WIDOW',
       age: 35,
       height: 170,
       weight: 59,
@@ -131,9 +129,9 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/95/95/c2/9595c24319c3e1cf65082f4aaf56c47d.png',
     },
     {
-      id: 11,
+      _id: '6168e3cf75c1dc09b86f8d0b',
       name: 'Wade Wilson',
-      alias: 'Deadpool',
+      alias: 'DEADPOOL',
       age: 35,
       height: 188,
       weight: 95,
@@ -142,9 +140,9 @@ export class SuperheroService {
         'https://cdn.inspireuplift.com/uploads/images/seller_products/30032/1702106659_1.png',
     },
     {
-      id: 12,
+      _id: '6168e3cf75c1dc09b86f8d0c',
       name: 'Matt Murdock',
-      alias: 'Daredevil',
+      alias: 'DAREDEVIL',
       age: 36,
       height: 183,
       weight: 91,
@@ -153,9 +151,9 @@ export class SuperheroService {
         'https://www.pinclipart.com/picdir/big/539-5392330_daredevil-png-clipart.png',
     },
     {
-      id: 13,
+      _id: '6168e3cf75c1dc09b86f8d0d',
       name: 'Carol Danvers',
-      alias: 'Captain Marvel',
+      alias: 'CAPTAIN MARVEL',
       age: 30,
       height: 180,
       weight: 74,
@@ -164,9 +162,9 @@ export class SuperheroService {
         'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c92b1cb3-0580-489f-8a32-ff0a3571b156/df63gx2-5e42e71f-076b-4c27-be81-5965a1ffb6e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M5MmIxY2IzLTA1ODAtNDg5Zi04YTMyLWZmMGEzNTcxYjE1NlwvZGY2M2d4Mi01ZTQyZTcxZi0wNzZiLTRjMjctYmU4MS01OTY1YTFmZmI2ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R2na7Xopc8EoaM997vIt0jnNaDuAIuxI9lhE0YgXFck',
     },
     {
-      id: 14,
-      name: 'Wolverine',
-      alias: 'Logan',
+      _id: '6168e3cf75c1dc09b86f8d0e',
+      name: 'Logan',
+      alias: 'WOLVERINE',
       age: 137,
       height: 160,
       weight: 88,
@@ -178,9 +176,9 @@ export class SuperheroService {
       image: 'https://pngfre.com/wp-content/uploads/Wolverine-23-663x1024.png',
     },
     {
-      id: 15,
-      name: 'Antorcha Humana',
-      alias: 'Johnny Storm',
+      _id: '6168e3cf75c1dc09b86f8d0f',
+      name: 'Johhny Storm',
+      alias: 'ANTORCHA HUMANA',
       age: 29,
       height: 180,
       weight: 77,
@@ -189,9 +187,9 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/55/df/48/55df481ca58ac620f679c9794f0caf59.png',
     },
     {
-      id: 16,
-      name: 'Tormenta',
-      alias: 'Ororo Munroe',
+      _id: '6168e3cf75c1dc09b86f8d10',
+      name: 'Ororo Monroe',
+      alias: 'TORMENTA',
       age: 34,
       height: 180,
       weight: 58,
@@ -209,8 +207,8 @@ export class SuperheroService {
     this.superheroes.next(this.SUPERHEROES);
   }
 
-  getSuperheroById(id: number): Observable<Superhero | undefined> {
-    return of(this.SUPERHEROES.find((superhero) => superhero.id === id));
+  getSuperheroById(_id: string): Observable<Superhero | undefined> {
+    return of(this.SUPERHEROES.find((superhero) => superhero._id === _id));
   }
 
   createSuperhero(superhero: Superhero): Observable<Superhero[]> {
@@ -227,7 +225,7 @@ export class SuperheroService {
   editSuperhero(editedSuperhero: Superhero) {
     return of(
       this.SUPERHEROES.map((superhero) => {
-        return superhero.id === editedSuperhero.id
+        return superhero._id === editedSuperhero._id
           ? editedSuperhero
           : superhero;
       })
@@ -238,9 +236,9 @@ export class SuperheroService {
     );
   }
 
-  deleteSuperhero(id: number) {
+  deleteSuperhero(_id: string) {
     this.SUPERHEROES = this.SUPERHEROES.filter(
-      (superhero) => superhero.id !== id
+      (superhero) => superhero._id !== _id
     );
     return of([...this.SUPERHEROES]).pipe(
       tap((response) => {

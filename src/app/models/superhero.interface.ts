@@ -1,5 +1,5 @@
 export interface Superhero {
-  id?: number;
+  _id?: string;
   name: string;
   alias: string;
   age: number;

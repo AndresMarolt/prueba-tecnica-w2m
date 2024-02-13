@@ -102,7 +102,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     confirmationModal.componentInstance.confirmEvent.subscribe(() => {
-      this.superheroService.deleteSuperhero(superhero.id!).subscribe();
+      this.superheroService.deleteSuperhero(superhero._id!).subscribe();
     });
   }
 

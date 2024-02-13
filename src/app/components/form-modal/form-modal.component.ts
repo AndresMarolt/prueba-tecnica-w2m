@@ -17,6 +17,7 @@ import { FormBuilder } from '@angular/forms';
 import { Superhero } from '../../models/superhero.interface';
 import { SuperheroService } from '../../services/superhero.service';
 import { v4 as uuidv4 } from 'uuid';
+import { UppercaseDirective } from '../../directives/uppercase.directive';
 
 @Component({
   selector: 'app-edit-superhero',
@@ -31,6 +32,7 @@ import { v4 as uuidv4 } from 'uuid';
   ],
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss',
+  hostDirectives: [UppercaseDirective],
 })
 export class FormModalComponent implements OnInit {
   public superheroForm!: FormGroup;
@@ -95,13 +97,14 @@ export class FormModalComponent implements OnInit {
   submit() {
     if (this.mode === 'CREATE') {
       let superhero = this.superheroForm.value;
-      superhero.id = uuidv4();
+      superhero._id = uuidv4();
+
       this.superheroService.createSuperhero(superhero).subscribe();
     } else if (this.mode === 'EDIT') {
       this.superheroService
         .editSuperhero({
           ...this.superheroForm.value,
-          id: this.superhero.id,
+          _id: this.superhero._id,
         })
         .subscribe(() => {
           this.closeModalEvent.emit();
