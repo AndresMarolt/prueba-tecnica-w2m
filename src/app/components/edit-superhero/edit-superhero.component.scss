@@ -1,0 +1,28 @@
+mat-card {
+  width: 600px;
+  overflow-y: scroll;
+  max-height: 90svh;
+
+  mat-card-header {
+    p {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px
+  }
+}
+
+::ng-deep {
+  mat-card-content {
+    mat-form-field {
+      width: 100%;
+    }
+
+  }
+}

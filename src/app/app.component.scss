@@ -1,5 +1,5 @@
 .content {
-  width: 90%;
+  width: 95%;
 }
 
 section {
@@ -42,6 +42,14 @@ section {
         color: rgb(142, 142, 142);
         font-size: 14px;
       }
+
+      strong {
+        display: block;
+      }
+
+      mat-chip {
+        margin: 0 4px 4px 0;
+      }
     }
 
     &_buttons {
@@ -59,7 +67,7 @@ mat-paginator {
 }
 
 ::ng-deep {
-  .mat-mdc-form-field-subscript-wrapper {
+  .superheroes_operations .mat-mdc-form-field-subscript-wrapper {
     display: none;
   }
 

@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Superhero } from '../models/superhero.interface';
-import { Observable, of } from 'rxjs';
+import { Observable, Subject, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SuperheroService {
-  private httpClient = inject(HttpClient);
   public SUPERHEROES: Superhero[] = [
     {
       id: 1,
@@ -201,18 +200,33 @@ export class SuperheroService {
     },
   ];
   constructor() {}
+  private superheroes: Subject<Superhero[]> = new Subject<Superhero[]>();
+  public superheroes$: Observable<Superhero[]> =
+    this.superheroes.asObservable();
 
-  getAllSuperheroes(): Observable<Superhero[]> {
-    return of(this.SUPERHEROES);
+  getAllSuperheroes() {
+    this.superheroes.next(this.SUPERHEROES);
   }
 
   getSuperheroById(id: number): Observable<Superhero | undefined> {
-    return of(this.SUPERHEROES.find((hero) => hero.id === id));
+    return of(this.SUPERHEROES.find((superhero) => superhero.id === id));
   }
 
   getSuperheroBySearchTerm() {}
 
-  editSuperhero() {}
+  editSuperhero(editedSuperhero: Superhero) {
+    return of(
+      this.SUPERHEROES.map((superhero) => {
+        return superhero.id === editedSuperhero.id
+          ? editedSuperhero
+          : superhero;
+      })
+    ).pipe(
+      tap((response) => {
+        this.superheroes.next(response);
+      })
+    );
+  }
 
   deleteSuperhero() {}
 }

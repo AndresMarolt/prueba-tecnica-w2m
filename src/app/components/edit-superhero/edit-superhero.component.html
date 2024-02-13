@@ -1,0 +1,84 @@
+<mat-card>
+  <mat-card-header>
+    <p>{{ superhero.alias }}</p>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="superheroForm">
+      <mat-form-field>
+        <mat-label>Alias</mat-label>
+        <input matInput type="text" formControlName="alias" />
+        @if(alias.hasError('required')) {
+        <mat-error>Debe ingresar un alias.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="name" />
+        @if(name.hasError('required')) {
+        <mat-error>Debe ingresar un nombre.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Edad</mat-label>
+        <input matInput type="number" formControlName="age" />
+        @if(age.hasError('required')) {
+        <mat-error>Debe ingresar una edad.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Altura (en cms.)</mat-label>
+        <input matInput type="number" formControlName="height" />
+        @if(height.hasError('required')) {
+        <mat-error>Debe ingresar una altura.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Peso</mat-label>
+        <input matInput type="number" formControlName="weight" />
+        @if(weight.hasError('required')) {
+        <mat-error>Debe ingresar un peso.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Superpoderes</mat-label>
+        <input
+          placeholder="Superpoder"
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addSuperpower($event)"
+        />
+        <mat-chip-grid #chipGrid aria-label="Superpower selection">
+          @for (superpower of superhero.superpowers; track superpower) {
+          <mat-chip-row (removed)="removeSuperpower(superpower)">
+            {{ superpower }}
+            <button matChipRemove [attr.aria-label]="'remove ' + superpower">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          }
+        </mat-chip-grid>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Imagen</mat-label>
+        <input matInput type="text" formControlName="image" />
+        @if(image.hasError('required')) {
+        <mat-error>Debe ingresar la URL de una imagen.</mat-error>
+        }
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button color="primary" mat-flat-button (click)="submit()">
+      Confirmar
+    </button>
+    <button mat-flat-button (click)="closeModal()">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
