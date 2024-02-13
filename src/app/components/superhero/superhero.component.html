@@ -1,0 +1,24 @@
+<div class="superhero">
+  <h2>{{ superhero?.alias }}</h2>
+
+  <mat-card>
+    <mat-card-content class="superhero_data">
+      <img
+        [src]="superhero?.image"
+        [alt]="superhero?.alias"
+        class="superhero_data-img"
+      />
+      <div class="superhero_data-text">
+        @for (superpower of superhero?.superpowers; track $index) {
+        <mat-chip>
+          {{ superpower }}
+        </mat-chip>
+        }
+        <p>Nombre: {{ superhero?.name }}</p>
+        <p>Edad: {{ superhero?.age }} años</p>
+        <p>Altura: {{ superhero?.height }}cm.</p>
+        <p>Peso: {{ superhero?.weight }} kilos</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

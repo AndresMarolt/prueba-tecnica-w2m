@@ -1,0 +1,90 @@
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+.superheroes_operations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  .button_add {
+    mat-icon {
+      margin-right: 6px;
+    }
+  }
+}
+
+.superheroes_list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  
+  .superhero {
+    position: relative;
+
+    &_img {
+      width: 100%;
+      margin: 0 auto;
+      height: 320px;
+    }
+
+    &_text {
+      width: 100%;
+      display: block;
+
+      p {
+        margin: 0;
+        color: rgb(142, 142, 142);
+        font-size: 14px;
+      }
+
+      strong {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+
+      mat-chip {
+        margin: 0 4px 4px 0;
+      }
+    }
+
+    &_buttons {
+      position: absolute;
+      top: 2%;
+      right: 5%;
+      display: flex;
+      gap: 6px;
+
+      
+    }
+  }
+}
+
+mat-paginator {
+  margin-top: 12px;
+}
+
+::ng-deep {
+  .superheroes_operations .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  button.mdc-button {
+    min-width: 36px;
+  }
+
+  .edit_button,
+  .delete_button {
+    padding: 0 !important;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .mat-mdc-unelevated-button>mat-icon.mat-icon {
+    margin: unset;
+  }
+}

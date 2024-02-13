@@ -17,7 +17,7 @@ import { FormBuilder } from '@angular/forms';
 import { Superhero } from '../../models/superhero.interface';
 import { SuperheroService } from '../../services/superhero.service';
 import { v4 as uuidv4 } from 'uuid';
-import { UppercaseDirective } from '../../directives/uppercase.directive';
+// import { UppercaseDirective } from '../../directives/uppercase.directive';
 
 @Component({
   selector: 'app-edit-superhero',
@@ -32,7 +32,7 @@ import { UppercaseDirective } from '../../directives/uppercase.directive';
   ],
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss',
-  hostDirectives: [UppercaseDirective],
+  // hostDirectives: [UppercaseDirective],
 })
 export class FormModalComponent implements OnInit {
   public superheroForm!: FormGroup;
