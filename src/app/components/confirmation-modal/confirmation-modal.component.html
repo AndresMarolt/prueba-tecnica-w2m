@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <p>{{ title }}</p>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{ text }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button color="primary" mat-flat-button (click)="submit()">
+      Confirmar
+    </button>
+    <button mat-flat-button (click)="closeModal()">Cancelar</button>
+  </mat-card-actions>
+</mat-card>

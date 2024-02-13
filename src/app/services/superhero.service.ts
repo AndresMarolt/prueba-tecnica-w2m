@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Superhero } from '../models/superhero.interface';
 import { Observable, Subject, of, tap } from 'rxjs';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -237,5 +238,14 @@ export class SuperheroService {
     );
   }
 
-  deleteSuperhero() {}
+  deleteSuperhero(id: number) {
+    this.SUPERHEROES = this.SUPERHEROES.filter(
+      (superhero) => superhero.id !== id
+    );
+    return of([...this.SUPERHEROES]).pipe(
+      tap((response) => {
+        this.superheroes.next(response);
+      })
+    );
+  }
 }

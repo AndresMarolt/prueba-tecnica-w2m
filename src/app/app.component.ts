@@ -22,6 +22,7 @@ import {
 } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './customPaginatorConfiguration';
 import { FormModalComponent } from './components/form-modal/form-modal.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -85,6 +86,23 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     createSuperheroModal.componentInstance.closeModalEvent.subscribe(() => {
       this.dialog.closeAll();
+    });
+  }
+
+  handleDelete(superhero: Superhero) {
+    const confirmationModal = this.dialog.open(ConfirmationModalComponent, {
+      autoFocus: false,
+    });
+    confirmationModal.componentInstance.title = 'Eliminar superhéroe';
+    confirmationModal.componentInstance.text =
+      '¿Está seguro de que desea eliminar a este superhéroe?';
+
+    confirmationModal.componentInstance.closeModalEvent.subscribe(() => {
+      this.dialog.closeAll();
+    });
+
+    confirmationModal.componentInstance.confirmEvent.subscribe(() => {
+      this.superheroService.deleteSuperhero(superhero.id!).subscribe();
     });
   }
 
