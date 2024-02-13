@@ -1,3 +1,7 @@
+@if(loading) {
+<mat-spinner></mat-spinner>
+} @else {
+
 <div class="superheroes_operations">
   <form [formGroup]="searchForm">
     <mat-form-field>
@@ -88,8 +92,8 @@
   aria-label="Select page"
   (page)="handlePageEvent($event)"
 ></mat-paginator>
-} @else {
+} @else if(!loading && superheroes.length) {
 <p class="no-results">
   No se encontraron resultados con los términos de búsqueda ingresados.
 </p>
-}
+} }

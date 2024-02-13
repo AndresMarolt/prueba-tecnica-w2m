@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Superhero } from '../models/superhero.interface';
-import { Observable, Subject, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -198,24 +198,27 @@ export class SuperheroService {
         'https://i.pinimg.com/originals/db/ac/a2/dbaca23bbf4894ae96b0f0798dcff4d6.png',
     },
   ];
-  constructor() {}
   private superheroes: Subject<Superhero[]> = new Subject<Superhero[]>();
   public superheroes$: Observable<Superhero[]> =
     this.superheroes.asObservable();
+  private loading = new BehaviorSubject<boolean>(true);
+  loading$ = this.loading.asObservable();
 
   getAllSuperheroes() {
-    this.superheroes.next(this.SUPERHEROES);
+    this.loading.next(true);
+    setTimeout(() => {
+      this.loading.next(false);
+      this.superheroes.next(this.SUPERHEROES);
+    }, 750);
   }
 
   getSuperheroById(_id: string): Observable<Superhero | undefined> {
-    return of(this.SUPERHEROES.find((superhero) => superhero._id === _id));
-  }
-
-  createSuperhero(superhero: Superhero): Observable<Superhero[]> {
-    this.SUPERHEROES.push(superhero);
-    return of([...this.SUPERHEROES]).pipe(
-      tap((response) => {
-        this.superheroes.next(response);
+    this.loading.next(true);
+    return of(this.SUPERHEROES.find((superhero) => superhero._id === _id)).pipe(
+      tap(() => {
+        setTimeout(() => {
+          this.loading.next(false);
+        }, 750);
       })
     );
   }
@@ -229,7 +232,21 @@ export class SuperheroService {
     );
   }
 
+  createSuperhero(superhero: Superhero): Observable<Superhero[]> {
+    this.loading.next(true);
+    this.SUPERHEROES.push(superhero);
+    return of([...this.SUPERHEROES]).pipe(
+      tap((response) => {
+        this.superheroes.next(response);
+        setTimeout(() => {
+          this.loading.next(false);
+        }, 750);
+      })
+    );
+  }
+
   editSuperhero(editedSuperhero: Superhero) {
+    this.loading.next(true);
     return of(
       this.SUPERHEROES.map((superhero) => {
         return superhero._id === editedSuperhero._id
@@ -239,17 +256,24 @@ export class SuperheroService {
     ).pipe(
       tap((response) => {
         this.superheroes.next(response);
+        setTimeout(() => {
+          this.loading.next(false);
+        }, 750);
       })
     );
   }
 
   deleteSuperhero(_id: string) {
+    this.loading.next(true);
     this.SUPERHEROES = this.SUPERHEROES.filter(
       (superhero) => superhero._id !== _id
     );
     return of([...this.SUPERHEROES]).pipe(
       tap((response) => {
         this.superheroes.next(response);
+        setTimeout(() => {
+          this.loading.next(false);
+        }, 750);
       })
     );
   }

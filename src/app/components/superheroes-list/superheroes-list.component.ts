@@ -10,7 +10,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
@@ -32,6 +32,7 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './superheroes-list.component.html',
   styleUrl: './superheroes-list.component.scss',
@@ -45,17 +46,19 @@ export class SuperheroesListComponent {
   public pageSize = 8;
   public pageIndex = 0;
   public searchForm!: FormGroup;
-  private subscriptions: Subscription[] = [];
+  public loading: boolean = false;
   private superheroService = inject(SuperheroService);
   private dialog = inject(MatDialog);
   private formBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.superheroService.superheroes$.subscribe((heroes) => {
-        this.superheroes = heroes;
-      })
-    );
+    this.superheroService.superheroes$.subscribe((heroes) => {
+      this.superheroes = heroes;
+    });
+
+    this.superheroService.loading$.subscribe((isLoading) => {
+      this.loading = isLoading;
+    });
 
     this.superheroService.getAllSuperheroes();
 
@@ -115,8 +118,4 @@ export class SuperheroesListComponent {
   }
 
   searchTerm(event: Event) {}
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe);
-  }
 }
