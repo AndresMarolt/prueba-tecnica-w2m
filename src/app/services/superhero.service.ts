@@ -220,7 +220,14 @@ export class SuperheroService {
     );
   }
 
-  getSuperheroBySearchTerm() {}
+  getSuperheroBySearchTerm(searchTerm: string) {
+    searchTerm = searchTerm.toLowerCase();
+    return of(
+      this.SUPERHEROES.filter((superhero) =>
+        superhero.alias.toLowerCase().includes(searchTerm)
+      )
+    );
+  }
 
   editSuperhero(editedSuperhero: Superhero) {
     return of(

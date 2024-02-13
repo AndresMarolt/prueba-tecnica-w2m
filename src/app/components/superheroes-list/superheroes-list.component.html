@@ -1,8 +1,10 @@
 <div class="superheroes_operations">
-  <mat-form-field>
-    <mat-label>Buscar</mat-label>
-    <input type="text" matInput color="accent" />
-  </mat-form-field>
+  <form [formGroup]="searchForm">
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input type="text" matInput color="accent" formControlName="term" />
+    </mat-form-field>
+  </form>
 
   <button
     mat-flat-button
@@ -15,6 +17,7 @@
   </button>
 </div>
 
+@if(superheroes.length) {
 <div class="superheroes_list">
   @for (superhero of superheroes.slice(pageIndex * pageSize, (pageIndex + 1) *
   pageSize); track $index) {
@@ -85,3 +88,8 @@
   aria-label="Select page"
   (page)="handlePageEvent($event)"
 ></mat-paginator>
+} @else {
+<p class="no-results">
+  No se encontraron resultados con los términos de búsqueda ingresados.
+</p>
+}

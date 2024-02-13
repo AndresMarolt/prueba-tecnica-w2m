@@ -17,7 +17,7 @@ import {
 } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { getSpanishPaginatorIntl } from '../../customPaginatorConfiguration';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -44,9 +44,11 @@ export class SuperheroesListComponent {
   public superheroes: Superhero[] = [];
   public pageSize = 8;
   public pageIndex = 0;
+  public searchForm!: FormGroup;
   private subscriptions: Subscription[] = [];
   private superheroService = inject(SuperheroService);
   private dialog = inject(MatDialog);
+  private formBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -56,6 +58,18 @@ export class SuperheroesListComponent {
     );
 
     this.superheroService.getAllSuperheroes();
+
+    this.searchForm = this.formBuilder.group({
+      term: [null],
+    });
+
+    this.searchForm.get('term')?.valueChanges.subscribe((value) => {
+      this.superheroService
+        .getSuperheroBySearchTerm(value)
+        .subscribe((superheroes) => {
+          this.superheroes = superheroes;
+        });
+    });
   }
 
   handlePageEvent(e: PageEvent) {
@@ -99,6 +113,8 @@ export class SuperheroesListComponent {
       this.superheroService.deleteSuperhero(superhero._id!).subscribe();
     });
   }
+
+  searchTerm(event: Event) {}
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe);

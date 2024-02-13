@@ -63,12 +63,19 @@ a {
     }
   }
 }
+.no-results {
+  margin-top: 64px;
+}
 
 mat-paginator {
   margin-top: 12px;
 }
 
 ::ng-deep {
+  mat-card {
+    height: 100%;
+  }
+  
   .superheroes_operations .mat-mdc-form-field-subscript-wrapper {
     display: none;
   }
