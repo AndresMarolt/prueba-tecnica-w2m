@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-header>
+    @if(mode === 'CREATE') {
+    <p>Crear superhéroe</p>
+    } @else {
     <p>{{ superhero.alias }}</p>
+    }
   </mat-card-header>
 
   <mat-card-content>

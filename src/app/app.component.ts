@@ -21,7 +21,7 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './customPaginatorConfiguration';
-import { EditSuperheroComponent } from './components/edit-superhero/edit-superhero.component';
+import { FormModalComponent } from './components/form-modal/form-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +40,7 @@ import { EditSuperheroComponent } from './components/edit-superhero/edit-superhe
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
-    { provide: MatDialogRef, useValue: { EditSuperheroComponent } },
+    { provide: MatDialogRef, useValue: { FormModalComponent } },
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -69,12 +69,21 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   handleEdit(superhero: Superhero) {
-    const editSuperheroModal = this.dialog.open(EditSuperheroComponent, {
+    const editSuperheroModal = this.dialog.open(FormModalComponent, {
       autoFocus: false,
     });
     editSuperheroModal.componentInstance.superhero = superhero;
-
+    editSuperheroModal.componentInstance.mode = 'EDIT';
     editSuperheroModal.componentInstance.closeModalEvent.subscribe(() => {
+      this.dialog.closeAll();
+    });
+  }
+
+  handleCreate() {
+    const createSuperheroModal = this.dialog.open(FormModalComponent, {
+      autoFocus: false,
+    });
+    createSuperheroModal.componentInstance.closeModalEvent.subscribe(() => {
       this.dialog.closeAll();
     });
   }

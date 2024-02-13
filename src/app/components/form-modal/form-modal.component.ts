@@ -16,6 +16,7 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Superhero } from '../../models/superhero.interface';
 import { SuperheroService } from '../../services/superhero.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-edit-superhero',
@@ -28,12 +29,13 @@ import { SuperheroService } from '../../services/superhero.service';
     MatChipsModule,
     MatIconModule,
   ],
-  templateUrl: './edit-superhero.component.html',
-  styleUrl: './edit-superhero.component.scss',
+  templateUrl: './form-modal.component.html',
+  styleUrl: './form-modal.component.scss',
 })
-export class EditSuperheroComponent implements OnInit {
+export class FormModalComponent implements OnInit {
   public superheroForm!: FormGroup;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
+  @Input() mode: string = 'CREATE';
   @Input() superhero: Superhero = {
     name: '',
     alias: '',
@@ -91,14 +93,20 @@ export class EditSuperheroComponent implements OnInit {
   }
 
   submit() {
-    this.superheroService
-      .editSuperhero({
-        ...this.superheroForm.value,
-        id: this.superhero.id,
-      })
-      .subscribe(() => {
-        this.closeModalEvent.emit();
-      });
+    if (this.mode === 'CREATE') {
+      let superhero = this.superheroForm.value;
+      superhero.id = uuidv4();
+      this.superheroService.createSuperhero(superhero).subscribe();
+    } else if (this.mode === 'EDIT') {
+      this.superheroService
+        .editSuperhero({
+          ...this.superheroForm.value,
+          id: this.superhero.id,
+        })
+        .subscribe(() => {
+          this.closeModalEvent.emit();
+        });
+    }
   }
 
   get alias() {

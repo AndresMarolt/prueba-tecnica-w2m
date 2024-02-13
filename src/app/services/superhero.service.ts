@@ -212,6 +212,15 @@ export class SuperheroService {
     return of(this.SUPERHEROES.find((superhero) => superhero.id === id));
   }
 
+  createSuperhero(superhero: Superhero): Observable<Superhero[]> {
+    this.SUPERHEROES.push(superhero);
+    return of([...this.SUPERHEROES]).pipe(
+      tap((response) => {
+        this.superheroes.next(response);
+      })
+    );
+  }
+
   getSuperheroBySearchTerm() {}
 
   editSuperhero(editedSuperhero: Superhero) {

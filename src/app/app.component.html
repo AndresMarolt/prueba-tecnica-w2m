@@ -9,7 +9,12 @@
       <input type="text" matInput color="accent" />
     </mat-form-field>
 
-    <button mat-flat-button color="primary" class="button_add">
+    <button
+      mat-flat-button
+      color="primary"
+      class="button_add"
+      (click)="handleCreate()"
+    >
       <mat-icon>add</mat-icon>
       Añadir superhéroe
     </button>
