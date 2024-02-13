@@ -12,12 +12,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Superhero } from '../../models/superhero.interface';
 import { SuperheroService } from '../../services/superhero.service';
 import { v4 as uuidv4 } from 'uuid';
-// import { UppercaseDirective } from '../../directives/uppercase.directive';
+import { log } from 'console';
 
 @Component({
   selector: 'app-edit-superhero',
@@ -32,7 +37,6 @@ import { v4 as uuidv4 } from 'uuid';
   ],
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss',
-  // hostDirectives: [UppercaseDirective],
 })
 export class FormModalComponent implements OnInit {
   public superheroForm!: FormGroup;
@@ -54,14 +58,14 @@ export class FormModalComponent implements OnInit {
     this.superheroForm = this.formBuilder.group({
       alias: [null, [Validators.required]],
       name: [null, [Validators.required]],
-      age: [null, [Validators.required]],
-      height: [null, [Validators.required]],
-      weight: [null, [Validators.required]],
+      age: [null, [Validators.required, this.nonNegativeValidator]],
+      height: [null, [Validators.required, this.nonNegativeValidator]],
+      weight: [null, [Validators.required, this.nonNegativeValidator]],
       superpowers: [null, [Validators.required]],
       image: [null, [Validators.required]],
     });
 
-    if (this.superhero) {
+    if (this.mode === 'EDIT') {
       this.superheroForm.patchValue({
         alias: this.superhero.alias,
         name: this.superhero.name,
@@ -95,6 +99,7 @@ export class FormModalComponent implements OnInit {
   }
 
   submit() {
+    if (!this.superheroForm.valid) return;
     if (this.mode === 'CREATE') {
       let superhero = this.superheroForm.value;
       superhero._id = uuidv4();
@@ -110,6 +115,14 @@ export class FormModalComponent implements OnInit {
           this.closeModalEvent.emit();
         });
     }
+  }
+
+  nonNegativeValidator(control: FormControl) {
+    const value = control.value;
+    if (value < 0) {
+      return { negative: true };
+    }
+    return null;
   }
 
   get alias() {
